@@ -14,30 +14,29 @@
 #include "AsteroidManager.h"
 #include "BossManager.h"
 
-class Game {
-    sf::RenderWindow m_window;
-    sf::Clock m_clock;
+class Game 
+{
+    	sf::RenderWindow m_window;
+    	sf::Clock m_clock;
 
-    SoundManager m_soundManager;
-    UiManager m_uiManager;
-    HighscoreManager m_highscoreManager;
-    ParticlesManager m_particleManager;
-    AsteroidManager m_asteroidManager;
-    Player m_player;
-    BossManager m_bossManager;
-    float m_deltaTime;
-    bool m_paused;
+    	SoundManager m_soundManager;
+    	UiManager m_uiManager;
+    	HighscoreManager m_highscoreManager;
+    	ParticlesManager m_particleManager;
+    	AsteroidManager m_asteroidManager;
+    	Player m_player;
+    	BossManager m_bossManager;
+    	float m_deltaTime;
+    	bool m_paused;
 
-    GameState m_currentState;
+    	GameState m_currentState;
 public:
-    Game();
+    	Game();
 
-    void update();
-    void draw();
+   	void update();
+    	void draw();
 
-    void changeState(GameState newState);
-
-    template <typename T> std::string to_string(const T &n);
+    	void changeState(GameState newState);
 };
 
 #endif // GAME_H

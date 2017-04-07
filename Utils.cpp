@@ -3,8 +3,14 @@
  Copyright 2017
 */
 
-class Utils {
-public:
-	static constexpr unsigned int WIDTH = 960;
-	static constexpr unsigned int HEIGHT = 720;
-};
+#include "Utils.h"
+#include <chrono>
+
+const unsigned int Utils::WIDTH = 960, Utils::HEIGHT = Utils::WIDTH / 12 * 9;
+std::mt19937 Utils::random(std::chrono::system_clock::now().time_since_epoch().count());
+
+int Utils::randomRange(int min, int max)
+{
+	std::uniform_int_distribution<int> dist(min, max);
+	return dist(random);
+}

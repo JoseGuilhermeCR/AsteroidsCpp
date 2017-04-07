@@ -4,123 +4,116 @@
 */
 
 #include "AsteroidManager.h"
+#include "Utils.h"
 
 AsteroidManager::AsteroidManager(unsigned int maxAsteroidNumber)
-    : m_asteroids(),
-      m_currentAsteroidNumber(0),
-      m_maxAsteroidNumber(maxAsteroidNumber),
-      m_random(std::chrono::system_clock::now().time_since_epoch().count())
+    	: 
+	m_asteroids(),
+      	m_currentAsteroidNumber(0),
+      	m_maxAsteroidNumber(maxAsteroidNumber)
 {
-    m_asteroids.reserve(maxAsteroidNumber);
+	m_asteroids.reserve(maxAsteroidNumber);
 }
 
-void AsteroidManager::update(const float deltaTime) {
-    if (m_currentAsteroidNumber < m_maxAsteroidNumber) {
-        unsigned int asteroidToAdd = m_maxAsteroidNumber - m_currentAsteroidNumber;
-        for (unsigned int i = 0; i < asteroidToAdd; ++i) {
-            float x = m_random() % Utils::WIDTH;
+void AsteroidManager::update(float deltaTime) {
+	if (m_currentAsteroidNumber < m_maxAsteroidNumber) 
+	{
+		unsigned int asteroidToAdd = m_maxAsteroidNumber - m_currentAsteroidNumber;
+		for (unsigned int i = 0; i < asteroidToAdd; ++i) 
+		{
+			float x = Utils::randomRange(0, Utils::WIDTH);
 
-            //if (x < 960)
-                //x = -100;
+            		float y = Utils::randomRange(0, Utils::HEIGHT);
 
-            float y = m_random() % Utils::HEIGHT;
+            		float r = Utils::randomRange(35, 60);
+            		float total = Utils::randomRange(5, 15);
 
-            //if (y < 720)
-                //y = -300;
+            		std::vector<int> offsets;
+            		offsets.reserve(total);
 
-            float r = m_random() % 60;
-            float total = m_random() % 15;
+            		for (unsigned int i = 0; i < total; ++i) 
+			{
+                		int offset = Utils::randomRange(-10, 10);
+                		offsets.push_back(offset);
+            		}
 
-            while (r < 35)
-                r = m_random() % 60;
+            		// Random velocity to the asteroid
+            		float velX = Utils::randomRange(-25, 25);
+            		float velY = Utils::randomRange(-25, 25);
 
-            while (total < 5)
-                total = m_random() % 15;
+            		// A random rotation value to the asteroid
+            		float rotation = Utils::randomRange(0, 180);
 
-            std::vector<int> offsets;
-            offsets.reserve(total);
+            		m_asteroids.push_back(Asteroid(x, y, velX, velY, r, total, rotation, offsets));
+            		++m_currentAsteroidNumber;
+        	}
+    	}
 
-            for (unsigned int i = 0; i < total; ++i) {
-                int offset = m_random() % 15 - m_random() % 15;
-                offsets.push_back(offset);
-            }
+    	for (unsigned int i = 0; i < m_asteroids.size(); ++i) 
+	{
+        	m_asteroids.at(i).update(deltaTime);
 
-            // Random velocity to the asteroid
-            bool xNeg = static_cast<bool>(m_random() % 1);
-            bool yNeg = static_cast<bool>(m_random() % 1);
-
-            float velX = (xNeg) ? -(m_random() % 20) : m_random() % 25;
-            float velY = (yNeg) ? -(m_random() % 20) : m_random() % 25;
-
-            // A random rotation value to the asteroid
-            float rotation = m_random() % 180;
-
-            m_asteroids.push_back(Asteroid(x, y, velX, velY, r, total, rotation, offsets));
-            ++m_currentAsteroidNumber;
-        }
-    }
-
-    for (unsigned int i = 0; i < m_asteroids.size(); ++i) {
-        m_asteroids.at(i).update(deltaTime);
-
-        if (m_asteroids.at(i).shouldDelete()) {
-            m_asteroids.erase(m_asteroids.begin() + i);
-            --i;
-            --m_currentAsteroidNumber;
-        }
-    }
+        	if (m_asteroids.at(i).shouldDelete()) 
+		{
+            		m_asteroids.erase(m_asteroids.begin() + i);
+            		--i;
+            		--m_currentAsteroidNumber;
+        	}
+    	}
 }
 
-void AsteroidManager::draw(sf::RenderWindow &window) {
-    for (unsigned int i = 0; i < m_asteroids.size(); ++i) {
-        m_asteroids.at(i).draw(window);
-    }
+void AsteroidManager::draw(sf::RenderWindow& window)
+{
+    	for (unsigned int i = 0; i < m_asteroids.size(); ++i) 
+	{
+        	m_asteroids.at(i).draw(window);
+    	}
 }
 
-void AsteroidManager::spawnChildAsteroid(unsigned int index) {
-    m_asteroids.at(index).setToDelete(true);
+void AsteroidManager::spawnChildAsteroid(unsigned int index) 
+{
+	m_asteroids.at(index).setToDelete(true);
 
-    if (m_asteroids.at(index).getR() / 2 < 10)
-        return;
+    	float radius = m_asteroids.at(index).getR();
 
-    float x = m_asteroids.at(index).getX() + m_random() % 20;
-    float y = m_asteroids.at(index).getY() + m_random() % 15;
+    	if (radius / 2 < 10)
+        	return;
 
-    float r = m_asteroids.at(index).getR() * 0.5f;
-    float total = m_random() % 15;
+    	float x = m_asteroids.at(index).getX() + Utils::randomRange(-radius, radius);
+    	float y = m_asteroids.at(index).getY() + Utils::randomRange(-radius, radius);
 
-    while (total < 5)
-        total = m_random() % 15;
+    	float r = radius * 0.5f;
+    	float total = Utils::randomRange(5, 15);
 
-    std::vector<int> offsets;
-    offsets.reserve(total);
+    	std::vector<int> offsets;
+    	offsets.reserve(total);
 
-    for (unsigned int i = 0; i < total; ++i) {
-        int offset = m_random() % 10 - m_random() % 15;
-        offsets.push_back(offset);
-    }
+    	for (unsigned int i = 0; i < total; ++i) 
+	{
+        	int offset = Utils::randomRange(-5, 10);
+        	offsets.push_back(offset);
+    	}
 
-    // Random velocity to the asteroid
-    bool xNeg = static_cast<bool>(m_random() % 1);
-    bool yNeg = static_cast<bool>(m_random() % 1);
+    	// Random velocity to the asteroid
+    	float velX = Utils::randomRange(-25, 25);
+    	float velY = Utils::randomRange(-25, 25);
 
-    float velX = (xNeg) ? -(m_random() % 20) : m_random() % 25;
-    float velY = (yNeg) ? -(m_random() % 20) : m_random() % 25;
+    	// A random rotation value to the asteroid
+    	float rotation = Utils::randomRange(0, 270);
 
-    // A random rotation value to the asteroid
-    float rotation = m_random() % 360;
+    	m_asteroids.push_back(Asteroid(x, y, velX, velY, r, total, rotation, offsets));
+    	m_asteroids.push_back(Asteroid(x + Utils::randomRange(-r, r), y + Utils::randomRange(-r, r), -velX, -velY, r, total, -rotation, offsets));
 
-    m_asteroids.push_back(Asteroid(x, y, velX, velY, r, total, rotation, offsets));
-    m_asteroids.push_back(Asteroid(x + m_random() % 20, y - m_random() % 20, -velX, -velY, r, total, -rotation, offsets));
-
-    m_currentAsteroidNumber += 2;
+    	m_currentAsteroidNumber += 2;
 }
 
-std::vector<Asteroid>& AsteroidManager::getAsteroids() {
-    return m_asteroids;
+std::vector<Asteroid>& AsteroidManager::getAsteroids() 
+{
+    	return m_asteroids;
 }
 
-void AsteroidManager::reset() {
-    m_currentAsteroidNumber = 0;
-    m_asteroids.clear();
+void AsteroidManager::reset() 
+{
+    	m_currentAsteroidNumber = 0;
+    	m_asteroids.clear();
 }
