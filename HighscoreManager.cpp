@@ -3,32 +3,45 @@
  Copyright 2017
 */
 
-#include "HighscoreManager.h"
+#include "include/HighscoreManager.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
 
 HighscoreManager::HighscoreManager()
-    : m_savedScore(0)
+    	:
+	m_savedScore(0)
 {
-    std::string value;
-    std::ifstream rs("highscore.sav");
+    	std::string value;
+    	std::ifstream rs("highscore.sav");
 
-    if (rs.is_open()) {
-        std::getline(rs, value);
-        std::istringstream iss(value);
-        iss >> m_savedScore;
+    	if (rs.is_open())
+	{
+        	std::getline(rs, value);
+        	std::istringstream iss(value);
+        	iss >> m_savedScore;
 
-        rs.close();
-    }
-    else {
-        std::cerr << "Could not open highscore file." << std::endl;
-    }
+        	rs.close();
+    	}
+    	else 
+	{
+        	std::cerr << "Could not open highscore file." << std::endl;
+    	}
 
-    std::cout << "Loaded highscore: " << m_savedScore << std::endl;
+    	std::cout << "Loaded highscore: " << m_savedScore << std::endl;
 }
 
-void HighscoreManager::setNewHighscore(long newHighscore) {
-    m_savedScore = newHighscore;
+void HighscoreManager::setNewHighscore(long newHighscore)
+{
+    	m_savedScore = newHighscore;
 
-    std::ofstream ws("highscore.sav", std::ios::trunc | std::ios::out);
-    ws << m_savedScore;
-    ws.close();
+    	std::ofstream ws("highscore.sav", std::ios::trunc | std::ios::out);
+    	ws << m_savedScore;
+    	ws.close();
+}
+
+long HighscoreManager::getSavedScore()
+{
+	return m_savedScore;
 }

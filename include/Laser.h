@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#ifndef LASER_H
-#define LASER_H
+#ifndef __LASER_H__
+#define __LASER_H__
 
 #include <SFML/Graphics.hpp>
 #include "Asteroid.h"
@@ -29,4 +29,4 @@ public:
     	float getY();
 };
 
-#endif // LASER_H
+#endif

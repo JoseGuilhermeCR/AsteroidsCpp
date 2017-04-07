@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#include "Game.h"
-#include "Utils.h"
+#include "include/Game.h"
+#include "include/Utils.h"
 #include <string>
 
 Game::Game()
@@ -33,7 +33,7 @@ Game::Game()
     	m_uiManager.addUiText("Developed by JoseGuilhermeCR", "menu_develop",
                            	18, 5, 690, sf::Color::White, true, GameState::IN_MENU);
     	m_uiManager.addUiText("Version: 1.00", "menu_version",
-                           	18, 860, 690, sf::Color::White, true, GameState::IN_MENU);
+                           	18, 850, 690, sf::Color::White, true, GameState::IN_MENU);
 
     	// In Game Texts
     	m_uiManager.addUiText("Lifes: 3", "ingame_lifecount", 18, 5, 5,
@@ -65,7 +65,7 @@ Game::Game()
     	m_uiManager.addUiText("D - rotate to the right ", "help_d", 32, 64, 196, sf::Color::White, true, GameState::IN_HELP);
     	m_uiManager.addUiText("W - move forward", "help_w", 32, 64, 256, sf::Color::White, true, GameState::IN_HELP);
     	m_uiManager.addUiText("P - pause the game", "help_p", 32, 64, 312, sf::Color::White, true, GameState::IN_HELP);
-    	m_uiManager.addUiText("Contact: joseguilhermebh@yahoo.com.br", "help_contact", 16, 32, Utils::HEIGHT - 32, sf::Color::White, true, GameState::IN_HELP);
+    	m_uiManager.addUiText("Contact in github.com/JoseGuilhermeCR", "help_contact", 16, 32, Utils::HEIGHT - 32, sf::Color::White, true, GameState::IN_HELP);
 
     	// Usage of lambda [] (parameters) -> return type {CODE};
     	// []  Capture nothing (or, a scorched earth strategy?)

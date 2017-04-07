@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#include "Asteroid.h"
-#include "Utils.h"
+#include "include/Asteroid.h"
+#include "include/Utils.h"
 
 Asteroid::Asteroid(float x, float y, float velX, float velY, float r, float total, float rotation, const std::vector<int> &offsets)
     	: 

@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#ifndef ASTEROID_H
-#define ASTEROID_H
+#ifndef __ASTEROID_H__
+#define __ASTEROID_H__
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -17,9 +17,9 @@ class Asteroid
     	float m_r;
     	float m_total;
     	float m_rotation;
-    	float m_averageOffset;
     	std::vector<int> m_offsets;
     	bool m_shouldBeDeleted;
+	float m_averageOffset;
 public:
     	Asteroid(float x, float y, float velX, float velY, float r, float total, float rotation, const std::vector<int> &offsets);
 
@@ -34,4 +34,4 @@ public:
     	float getAverageOffset();
 };
 
-#endif // ASTEROID_H
+#endif

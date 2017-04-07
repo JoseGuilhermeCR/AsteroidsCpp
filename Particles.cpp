@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#include "Particles.h"
-#include "Utils.h"
+#include "include/Particles.h"
+#include "include/Utils.h"
 
 Particles::Particles(unsigned int numberOfParticles, float x, float y, float lifeTime)
     	: 

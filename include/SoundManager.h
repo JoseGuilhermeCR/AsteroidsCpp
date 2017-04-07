@@ -3,12 +3,11 @@
  Copyright 2017
 */
 
-#ifndef SOUNDMANAGER_H
-#define SOUNDMANAGER_H
+#ifndef __SOUNDMANAGER_H__
+#define __SOUNDMANAGER_H__
 
 #include <SFML/Audio.hpp>
 #include <map> // For std::map
-#include <string>
 
 class SoundManager
 {
@@ -20,4 +19,4 @@ public:
     	void playSound(const std::string& key);
 };
 
-#endif // SOUNDMANAGER_H
+#endif

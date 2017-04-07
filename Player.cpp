@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#include "Player.h"
-#include "Utils.h"
+#include "include/Player.h"
+#include "include/Utils.h"
 
 Player::Player(float x, float y, float maxVel, AsteroidManager& asteroidManager,
                 ParticlesManager& particleManager, UiManager& uiManager, SoundManager& soundManager)
@@ -262,4 +262,39 @@ void Player::reset()
     	m_vulnerable = true;
 
     	m_lasers.clear();
+}
+
+float Player::getX()
+{
+	return m_shape.getPosition().x;
+}
+
+float Player::getY()
+{
+	return m_shape.getPosition().y;
+}
+
+const sf::ConvexShape& Player::getShapeFromPlayer()
+{
+	return m_shape;
+}
+
+bool Player::isPlayerVulnerable()
+{
+	return m_vulnerable;
+}
+
+unsigned int Player::getLifeNumber()
+{
+	return m_lives;
+}
+
+long Player::getScore()
+{
+	return m_score;
+}
+
+std::vector<Laser>& Player::getLasers()
+{
+	return m_lasers;
 }

@@ -3,8 +3,9 @@
  Copyright 2017
 */
 
-#include "Game.h"
+#include "include/Game.h"
 
-int main() {
-    Game game;
+int main(int argc, char** argv) 
+{
+	Game game;
 }

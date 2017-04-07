@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef __PLAYER_H__
+#define __PLAYER_H__
 
 #include "SoundManager.h"
 #include "UiManager.h"
@@ -42,17 +42,13 @@ public:
     	void die();
     	void reset();
 
-    	float getX() { return m_shape.getPosition().x; }
-    	float getY() { return m_shape.getPosition().y; }
-
-    	// unsigned int getPlayerPointCount() { return m_shape.getPointCount(); }
-    	const sf::ConvexShape& getShapeFromPlayer() { return m_shape; }
-
-    	bool isPlayerVulnerable() { return m_vulnerable; }
-    	unsigned int getLifeNumber() { return m_lives; }
-    	long getScore() { return m_score; }
-
-    	std::vector<Laser>& getLasers() { return m_lasers; }
+    	float getX();
+    	float getY();
+    	const sf::ConvexShape& getShapeFromPlayer();
+    	bool isPlayerVulnerable();
+    	unsigned int getLifeNumber();
+    	long getScore();
+    	std::vector<Laser>& getLasers();
 };
 
-#endif // PLAYER_H
+#endif

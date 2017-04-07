@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#ifndef PARTICLES_H
-#define PARTICLES_H
+#ifndef __PARTICLES_H__
+#define __PARTICLES_H__
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -31,4 +31,4 @@ public:
     	bool shouldDelete();
 };
 
-#endif // PARTICLES_H
+#endif

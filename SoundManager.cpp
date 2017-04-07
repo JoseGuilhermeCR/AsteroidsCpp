@@ -3,8 +3,9 @@
  Copyright 2017
 */
 
-#include "SoundManager.h"
+#include "include/SoundManager.h"
 #include <iostream>
+#include <string>
 #include <tuple> // for pair<key, value>
 #include <stdexcept> // fort out_of_range exception
 #include <cassert> // for assert
@@ -25,7 +26,8 @@ void SoundManager::addSound(const std::string& key, const std::string& filename)
     	sound.setBuffer(m_soundBuffer);
 
     	// Insert the sound into the map
-    	m_sounds.insert(std::pair<std::string, sf::Sound>(key, sound));
+    	//m_sounds.insert(std::pair<std::string, sf::Sound>(key, sound));
+	m_sounds.insert(std::make_pair(key, sound));
 }
 
 void SoundManager::playSound(const std::string& key)
@@ -34,7 +36,7 @@ void SoundManager::playSound(const std::string& key)
 	{
         	m_sounds.at(key).play();
     	}
-    	catch (std::out_of_range &oor) 
+    	catch (std::out_of_range& oor) 
 	{
         	std::cerr << "The sound you are trying to play does not exist." << std::endl;
     	}

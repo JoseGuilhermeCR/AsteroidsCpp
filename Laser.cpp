@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#include "Laser.h"
-#include "Utils.h"
+#include "include/Laser.h"
+#include "include/Utils.h"
 
 Laser::Laser(float x, float y, float velX, float velY, float lifeTime)
     	:

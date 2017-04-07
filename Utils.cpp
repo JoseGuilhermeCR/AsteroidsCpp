@@ -3,7 +3,7 @@
  Copyright 2017
 */
 
-#include "Utils.h"
+#include "include/Utils.h"
 #include <chrono>
 
 const unsigned int Utils::WIDTH = 960, Utils::HEIGHT = Utils::WIDTH / 12 * 9;

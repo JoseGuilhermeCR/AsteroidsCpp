@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#include "AsteroidManager.h"
-#include "Utils.h"
+#include "include/AsteroidManager.h"
+#include "include/Utils.h"
 
 AsteroidManager::AsteroidManager(unsigned int maxAsteroidNumber)
     	: 

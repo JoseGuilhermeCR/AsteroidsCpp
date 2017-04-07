@@ -3,7 +3,7 @@
  Copyright 2017
 */
 
-#include "ParticlesManager.h"
+#include "include/ParticlesManager.h"
 
 ParticlesManager::ParticlesManager()
     	: 

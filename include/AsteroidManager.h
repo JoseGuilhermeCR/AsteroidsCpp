@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#ifndef ASTEROIDMANAGER_H
-#define ASTEROIDMANAGER_H
+#ifndef __ASTEROIDMANAGER_H__
+#define __ASTEROIDMANAGER_H__
 
 #include <SFML/Graphics.hpp>
 #include "Asteroid.h"
@@ -26,4 +26,4 @@ public:
     	std::vector<Asteroid>& getAsteroids();
 };
 
-#endif // ASTEROIDMANAGER_H
+#endif

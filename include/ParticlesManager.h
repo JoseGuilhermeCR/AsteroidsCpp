@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#ifndef PARTICLESMANAGER_H
-#define PARTICLESMANAGER_H
+#ifndef __PARTICLESMANAGER_H__
+#define __PARTICLESMANAGER_H__
 
 #include <vector>
 #include "Particles.h"
@@ -22,4 +22,4 @@ public:
     	void spawnParticleSystem(unsigned int number, float x, float y, float lifeTime);
 };
 
-#endif // PARTICLESMANAGER_H
+#endif

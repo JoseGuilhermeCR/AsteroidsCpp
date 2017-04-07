@@ -3,8 +3,8 @@
  Copyright 2017
 */
 
-#ifndef GAME_H
-#define GAME_H
+#ifndef __GAME_H__
+#define __GAME_H__
 
 #include "SoundManager.h"
 #include "GameState.h"
@@ -18,7 +18,6 @@ class Game
 {
     	sf::RenderWindow m_window;
     	sf::Clock m_clock;
-
     	SoundManager m_soundManager;
     	UiManager m_uiManager;
     	HighscoreManager m_highscoreManager;
@@ -28,15 +27,13 @@ class Game
     	BossManager m_bossManager;
     	float m_deltaTime;
     	bool m_paused;
-
     	GameState m_currentState;
 public:
     	Game();
 
    	void update();
     	void draw();
-
     	void changeState(GameState newState);
 };
 
-#endif // GAME_H
+#endif
